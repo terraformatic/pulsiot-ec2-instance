@@ -44,6 +44,11 @@ resource "aws_security_group_rule" "tf_sg_ingress_rule" {
   cidr_blocks       = lookup(var.sg_rules[count.index], "cidr_blocks")
 }
 
+resource "aws_eip" "this" {
+  vpc      = true
+  instance = module.ec2_instance.id
+}
+
 resource "aws_iam_instance_profile" "profile" {
   name = "${var.name}-${var.environment}-iam-profile"
   role = aws_iam_role.role.name
