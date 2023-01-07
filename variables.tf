@@ -40,6 +40,12 @@ variable "key_name" {
     default = ""
 }
 
+variable "user_data" {
+    description = "The user data needs to be passed into the instance during launch"
+    type = string
+    default = ""
+}
+
 variable "root_block_device" {
     description = "The root block device for the instance"
     type = list(map(string))
