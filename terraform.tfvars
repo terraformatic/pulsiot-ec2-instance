@@ -1,11 +1,11 @@
 instance_count              = 1
-name                        = "jenkins-CI Server"
+name                        = "demo"
 ami                         = "ami-014ec3973fd627c70"
 instance_type               = "t2.micro"
 vpc_id                      = "vpc-03a2e06b"
 subnet_filter               = "subnet-e25ccc98"
 associate_public_ip_address = true
-key_name                    = "mediawiki"
+key_name                    = "default"
 iam_instance_profile        = "admin"
 user_data                   = "user_data.sh"
 

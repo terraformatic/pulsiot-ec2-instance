@@ -7,7 +7,7 @@ variable "aws_profile" {
 variable "aws_region" {
   description = "Default region in AWS where terrafrom will create all the resources"
   type        = string
-  default     = "eu-west-2"
+  default     = "us-east-1"
 }
 
 variable "ami" {
