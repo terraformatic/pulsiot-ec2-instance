@@ -3,23 +3,28 @@ data "template_file" "user_data" {
 }
 
 module "ec2_instance" {
-  source                      = "terraform-aws-modules/ec2-instance/aws"
-  version                     = "~> 3.0"
-  name                        = var.name
-  ami                         = var.ami
-  tenancy                     = "default"
-  instance_type               = var.instance_type
-  subnet_id                   = var.subnet_id
-  associate_public_ip_address = "false"
-  key_name                    = var.key_name
-  monitoring                  = "true"
-  vpc_security_group_ids      = [aws_security_group.tf_sg.id]
-  user_data                   = data.template_file.user_data.rendered
-  iam_instance_profile        = aws_iam_instance_profile.profile.id
-  root_block_device           = var.root_block_device
-  ebs_block_device            = var.ebs_block_device
-  volume_tags                 = var.volume_tags
-  tags                        = var.tags
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "~> 3.0"
+
+  name = var.name
+
+  ami                    = var.ami
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  monitoring             = true
+  vpc_security_group_ids = [aws_security_group.tf_sg.id]
+  subnet_id              = var.subnet_id
+  user_data              = data.template_file.user_data.rendered
+  volume_tags            = var.volume_tags
+  tags                   = var.tags
+
+  root_block_device = [{
+    volume_size           = "10"
+    volume_type           = "gp3"
+    delete_on_termination = "true"
+    encypted              = "false"
+  }]
+
 }
 
 resource "aws_security_group" "tf_sg" {

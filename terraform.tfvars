@@ -9,14 +9,19 @@ key_name                    = "default"
 iam_instance_profile        = "admin"
 user_data                   = "user_data.sh"
 
+/*
 root_block_device = [
-  {
-    volume_type           = "gp2"
-    volume_size           = 10
-    delete_on_termination = "true"
-    encypted              = "false"
-  }
-]
+    {
+      encrypted   = true
+      volume_type = "gp3"
+      throughput  = 200
+      volume_size = 50
+      tags = {
+        Name = "my-root-block"
+      }
+    },
+  ]
+*/
 
 volume_tags = {
   "Name"      = "ebs_jenkins"

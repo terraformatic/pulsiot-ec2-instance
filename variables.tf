@@ -10,6 +10,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "instance_count" {
+  description = "Number of instances to be created"
+  type        = string
+  default     = "1"
+}
+
 variable "ami" {
   description = "The AMI to be used to create the instance"
   type        = string
@@ -22,10 +28,28 @@ variable "instance_type" {
   default     = ""
 }
 
+variable "iam_instance_profile" {
+  description = "The IAM role to be passed to the instance during launch"
+  type        = string
+  default     = ""
+}
+
 variable "subnet_id" {
   description = "The subnet in which the instance needs to be created"
   type        = string
   default     = ""
+}
+
+variable "subnet_filter" {
+  description = "The subnet in which the instance need to be launched"
+  type        = string
+  default     = ""
+}
+
+variable "associate_public_ip_address" {
+  description = "To determine whether to launch public IP's for the instance"
+  type        = bool
+  default     = false
 }
 
 variable "key_name" {
