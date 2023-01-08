@@ -70,10 +70,10 @@ variable "root_block_device" {
   type = list(any)
   default = [
     {
-      encrypted   = true
+      encrypted   = false
       volume_type = "gp3"
       throughput  = 200
-      volume_size = 50
+      volume_size = 10
     },
   ]
 }
